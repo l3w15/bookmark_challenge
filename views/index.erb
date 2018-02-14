@@ -5,6 +5,17 @@
     <title>Links</title>
   </head>
   <body>
-    <h1><%= @links %></h1>
+    <ul>
+      <% @links.map do |link| %>
+        <h1>
+          <li><a href="<%= link %>"><%= link %></a></li>
+        </h1>
+      <% end %>
+    </ul>
+    <!-- <br> -->
+    <form action="/new" method="GET">
+        <input type="submit" value="Add link">
+    </form>
+
   </body>
 </html>
