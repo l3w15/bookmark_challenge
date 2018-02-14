@@ -1,12 +1,8 @@
 require 'sinatra/base'
 require './lib/link'
-require './lib/database_connection_setup'
+require './database_connection_setup'
 
 class BookmarkManager < Sinatra::Base
-
-  before do
-    DatabaseConnection.setup('bookmark_manager_' + ENV['RACK_ENV'])
-  end
 
   get '/' do
     @links = Link.all
