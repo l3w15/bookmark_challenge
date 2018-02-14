@@ -1,9 +1,18 @@
 class DatabaseConnection
 
-  attr_reader :db
+  class << self
+    attr_reader :database
+  end
 
   def self.setup(db)
-    @db = PG.connect dbname: db
+    @database = PG.connect dbname: db
+    p @database
   end
+
+  def self.query(sql)
+    @database.exec "#{sql}"
+  end
+
+  
 
 end

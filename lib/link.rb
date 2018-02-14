@@ -11,7 +11,6 @@ class Link
 
   def self.add(link)
     connection = PG.connect dbname: 'bookmark_manager_' + ENV['RACK_ENV']
-    p connection
     connection.exec "INSERT INTO links (url) VALUES('#{link}')"
   end
 end
