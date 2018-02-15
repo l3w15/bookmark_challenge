@@ -15,7 +15,7 @@
     <ul>
       <% @links.map do |link| %>
         <h1>
-          <li><a href="<%= link.url %>"><%= link.url %></a></li>
+          <li><a href="<%= link.url %>" target="_blank"><%= link.title %></a></li>
         </h1>
       <% end %>
     </ul>

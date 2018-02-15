@@ -14,12 +14,12 @@ describe Link do
 
   describe "#add" do
     it "adds a link to the database" do
-      described_class.add("http://www.friedegg.com")
+      described_class.add("http://www.friedegg.com", "friedegg")
       expect(urls).to include "http://www.friedegg.com"
     end
 
     it "Doesn't add an invalid link" do
-      expect { described_class.add("http:||www.dogswearingsunglassses.com") }
+      expect { described_class.add("http:||www.dogswearingsunglassses.com", "won't work") }
       .to raise_error RuntimeError
     end
   end
