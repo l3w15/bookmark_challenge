@@ -5,12 +5,24 @@ require 'uri'
 
 
 class Link
+
+  attr_reader :url
+
+  def initialize(id, url)
+    @id = id
+    @url = url
+  end
+
   def self.all
     # connection = PG.connect dbname: 'bookmark_manager_' + ENV['RACK_ENV']
     # result = connection.exec 'SELECT * FROM links'
     result = DatabaseConnection.query('SELECT * FROM links')
-    result.map { |row| row['url'] }
-
+    link_array = []
+    result.map do |link|
+      link = Link.new(link['id'], link['url'])
+      link_array << link
+    end
+    link_array
   end
 
   def self.add(link)
@@ -24,6 +36,6 @@ class Link
   private
 
   def self.working?(link)
-    fail unless link =~ URI::DEFAULT_PARSER.regexp[:ABS_URI]
+    fail link unless link =~ URI::DEFAULT_PARSER.regexp[:ABS_URI]
   end
 end
