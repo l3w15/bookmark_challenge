@@ -19,10 +19,11 @@ class BookmarkManager < Sinatra::Base
 
   post '/' do
     begin
-      Link.add(params[:new_link])
+      new_link = params[:new_link]
+      Link.add(new_link)
       redirect '/'
     rescue Exception
-      flash[:invalid_link] = true
+      flash[:invalid_link] = new_link
     end
     redirect '/new'
   end

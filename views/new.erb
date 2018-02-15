@@ -8,7 +8,9 @@
       <h1>Enter a new link</h1>
       <% if flash[:invalid_link] %>
       <div id='flash'>
-        <div class='flash invalid_link'> <h1>Sorry, that's not a valid link</h1> </div>
+        <div class='flash invalid_link'>
+          <h1>Sorry, "<%= flash[:invalid_link] %>" is not a valid link</h1> 
+        </div>
       </div>
       <% end %>
       <form action="/" method="POST">
