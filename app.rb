@@ -9,45 +9,55 @@ class BookmarkManager < Sinatra::Base
   register Sinatra::Flash
 
   get '/' do
+    redirect('/links')
+  end
+
+  # show all links(index)
+  get '/links' do
     @links = Link.all
     erb(:index)
   end
 
-  get '/new' do
+  # get form for new link
+  get '/links/new' do
     erb(:new)
   end
 
-  post '/' do
+  #adds new link
+  post '/links' do
     begin
       url = params[:url]
       title = params[:title]
       Link.add(url, title)
-      redirect '/'
+      redirect '/links'
     rescue Exception
       flash[:invalid_link] = url
     end
-    redirect '/new'
+    redirect '/links/new'
   end
 
-  get '/delete' do
+  #deletes links
+  post '/links/:id/delete' do
     Link.delete(params[:id])
-    redirect('/')
+    redirect('/links')
   end
 
-  get '/update' do
+  #update links form
+  get '/links/:id/edit' do
     @link = Link.find(params[:id])
     erb(:update)
   end
 
-  post '/update' do
+  #updates link
+  post '/links/:id/update' do
     begin
       url = params[:new_url]
       title = params[:new_title]
       id = params[:id]
       Link.update(url, title, id)
-      redirect '/'
+      redirect '/links'
     rescue Exception
-      flash[:invalid_update] = "The update did not have a alid url"
+      flash[:invalid_update] = "The update did not have a valid url"
     end
     redirect '/'
   end

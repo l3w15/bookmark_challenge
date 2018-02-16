@@ -7,14 +7,14 @@ feature "Add link" do
         url: "http://www.facebook.com", title: "don't use facebook" }
 
   scenario "User clicks on a button and is directed to add link form" do
-    visit '/'
+    visit '/links'
     click_button "Add link"
     expect(page).to have_content "Enter a new link"
 
   end
 
   scenario "User adds a link and it is added to the list" do
-    visit '/'
+    visit '/links'
     click_button "Add link"
     fill_in("url", :with => good_link.url)
     fill_in("title", :with => good_link.title)
@@ -24,7 +24,7 @@ feature "Add link" do
   end
 
   scenario "User gets a flash error message if the link is not a valid url" do
-    visit '/'
+    visit '/links'
     click_button "Add link"
     fill_in("url", :with => bad_url)
     click_button "Submit link"

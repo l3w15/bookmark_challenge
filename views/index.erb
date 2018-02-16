@@ -17,11 +17,11 @@
       <% @links.map do |link| %>
         <h1>
           <li><a href="<%= link.url %>" target="_blank"><%= link.title %></a></li>
-          <form action="/delete" method="DELETE">
+          <form action="/links/<%= link.id %>/delete" method="POST">
             <input type="hidden" name="id" value="<%= link.id %>">
             <input id="delete-<%= link.id %>" type="submit" value="delete">
           </form>
-          <form action="/update" method="PUT">
+          <form action="/links/<%= link.id %>/edit" method="GET">
             <input type="hidden" name="id" value="<%= link.id %>">
             <input id="update-<%= link.id %>" type="submit" value="update">
           </form>
@@ -29,7 +29,7 @@
       <% end %>
     </ul>
     <!-- <br> -->
-    <form action="/new" method="GET">
+    <form action="/links/new" method="GET">
         <input type="submit" value="Add link">
     </form>
 
