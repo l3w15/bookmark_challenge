@@ -29,5 +29,9 @@ class BookmarkManager < Sinatra::Base
     redirect '/new'
   end
 
+  get '/delete' do
+    p params[:id]
+  end
+
   # run! if app_file == $0
 end

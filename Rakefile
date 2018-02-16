@@ -4,10 +4,10 @@ require 'pg'
 task :setup_test_database do
   connection = PG.connect dbname: 'bookmark_manager_' + ENV['RACK_ENV']
   connection.exec "TRUNCATE links;
-  INSERT INTO links (url, title)
-  VALUES ('http://www.facebook.com', 'procrastinate with facebook');
-  INSERT INTO links (url, title)
-  VALUES ('http://www.google.com', 'ask google');"
+  INSERT INTO links
+  VALUES (1, 'http://www.facebook.com', 'procrastinate with facebook');
+  INSERT INTO links 
+  VALUES (2, 'http://www.google.com', 'ask google');"
 end
 
 

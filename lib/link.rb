@@ -2,11 +2,9 @@ require 'pg'
 require_relative 'database_connection'
 require 'uri'
 
-
-
 class Link
 
-  attr_reader :url, :title
+  attr_reader :url, :title, :id
 
   def initialize(id, url, title)
     @id = id
@@ -15,15 +13,8 @@ class Link
   end
 
   def self.all
-    # connection = PG.connect dbname: 'bookmark_manager_' + ENV['RACK_ENV']
-    # result = connection.exec 'SELECT * FROM links'
     result = DatabaseConnection.query('SELECT * FROM links')
-    link_array = []
-    result.map do |link|
-      link = Link.new(link['id'], link['url'], link['title'])
-      link_array << link
-    end
-    link_array
+    result.map { |link| Link.new(link['id'], link['url'], link['title']) }
   end
 
   def self.add(url, title)
@@ -31,8 +22,6 @@ class Link
     working?(url)
     DatabaseConnection.query("INSERT INTO links (url, title)
                               VALUES('#{url}', '#{title}')")
-      # connection = PG.connect dbname: 'bookmark_manager_' + ENV['RACK_ENV']
-      # connection.exec "INSERT INTO links (url) VALUES('#{link}')"
   end
 
   private

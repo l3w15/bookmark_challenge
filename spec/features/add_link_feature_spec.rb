@@ -31,13 +31,13 @@ feature "Add link" do
     expect(page).to have_content "Sorry, \"#{bad_url}\" is not a valid link"
   end
 
-  scenario "It allows a user to use apostrophes in a title" do
-    visit '/'
-    click_button "Add link"
-    fill_in("url", :with => apostrophe_link_title.url)
-    fill_in("title", :with => apostrophe_link_title.title)
-    click_button "Submit link"
-    expect(page).to have_link(apostrophe_link_title.title)
-    expect(page).not_to have_content "not a valid link"
-  end
+  # scenario "It allows a user to use apostrophes in a title" do
+  #   visit '/'
+  #   click_button "Add link"
+  #   fill_in("url", :with => apostrophe_link_title.url)
+  #   fill_in("title", :with => apostrophe_link_title.title)
+  #   click_button "Submit link"
+  #   expect(page).to have_link(apostrophe_link_title.title)
+  #   expect(page).not_to have_content "not a valid link"
+  # end
 end

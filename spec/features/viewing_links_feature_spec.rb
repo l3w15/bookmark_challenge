@@ -9,4 +9,10 @@ feature "viewing links" do
     visit '/'
     click_on "facebook"
   end
+
+  scenario "User can click on a button to delete a link" do
+    visit '/'
+    click_on "link-1"
+    expect(page).not_to have_content "facebook"
+  end
 end
