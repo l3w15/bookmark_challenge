@@ -18,7 +18,11 @@
           <li><a href="<%= link.url %>" target="_blank"><%= link.title %></a></li>
           <form action="/delete" method="DELETE">
             <input type="hidden" name="id" value="<%= link.id %>">
-            <input id="link-<%= link.id %>" type="submit" value="delete">
+            <input id="delete-<%= link.id %>" type="submit" value="delete">
+          </form>
+          <form action="/update" method="PUT">
+            <input type="hidden" name="id" value="<%= link.id %>">
+            <input id="update-<%= link.id %>" type="submit" value="update">
           </form>
         </h1>
       <% end %>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Update link</title>
+  </head>
+  <body>
+      <h1>Enter a new link</h1>
+      <% if flash[:invalid_link] %>
+      <div id='flash'>
+        <div class='flash invalid_link'>
+          <h1>Sorry, "<%= flash[:invalid_link] %>" is not a valid link</h1>
+        </div>
+      </div>
+      <% end %>
+      <form action="/update" method="POST">
+        <input type="hidden" name="id" value="<%= @link.id %>">
+        <input type="text" name="new_url" value="<%= @link.url %>">
+        <input type="text" name="new_title" value="<%= @link.title %>">
+        <input type="submit" value="Update">
+      </form>
+
+      <!-- <form class="/" method="GET">
+        <input type="submit" value="Back to links">
+      </form> -->
+  </body>
+</html>

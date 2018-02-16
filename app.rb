@@ -30,7 +30,25 @@ class BookmarkManager < Sinatra::Base
   end
 
   get '/delete' do
-    p params[:id]
+    Link.delete(params[:id])
+    redirect('/')
+  end
+
+  get '/update' do
+    @link = Link.find(params[:id])
+    erb(:update)
+  end
+
+  post '/update' do
+    begin
+      url = params[:url]
+      title = params[:title]
+      Link.update(url, title)
+      redirect '/'
+    rescue Exception
+      flash[:invalid_link] = url
+    end
+    redirect '/new'
   end
 
   # run! if app_file == $0
