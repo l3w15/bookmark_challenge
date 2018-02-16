@@ -34,7 +34,8 @@ class Link
   end
 
   def self.update(url, title, id)
-    DatabaseConnection.query("UPDATE links SET url = '#{url}, title = '#{title} WHERE id = #{id}")
+    working?(url)
+    DatabaseConnection.query("UPDATE links SET url = '#{url}', title = '#{title}' WHERE id = #{id}")
   end
 
   private

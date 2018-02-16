@@ -5,12 +5,13 @@
     <title>Links</title>
   </head>
   <body>
-    <!-- <% flash.keys.each do |type| %>
-      <div data-alert class="flash <%= type %> alert-box radius">
-        <%= flash[type] %>
-        <a href="#" class="close">&times;</a>
+    <% if flash[:invalid_update] %>
+    <div id='flash'>
+      <div class='flash invalid_update'>
+        <h1><%= flash[:invalid_update] %></h1>
       </div>
-    <% end %> -->
+    </div>
+    <% end %>
 
     <ul>
       <% @links.map do |link| %>

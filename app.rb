@@ -41,14 +41,15 @@ class BookmarkManager < Sinatra::Base
 
   post '/update' do
     begin
-      url = params[:url]
-      title = params[:title]
-      Link.update(url, title)
+      url = params[:new_url]
+      title = params[:new_title]
+      id = params[:id]
+      Link.update(url, title, id)
       redirect '/'
     rescue Exception
-      flash[:invalid_link] = url
+      flash[:invalid_update] = "The update did not have a alid url"
     end
-    redirect '/new'
+    redirect '/'
   end
 
   # run! if app_file == $0
